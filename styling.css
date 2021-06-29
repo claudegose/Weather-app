@@ -38,7 +38,7 @@ body {
 
 .date-container #am-pm {
     font-size: 50px;
-    margin-left: 10px;
+
 }
 
 .date-container .date {
@@ -90,6 +90,25 @@ body {
 
 
 
+.future-forcast .today {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.future-forcast .today .day {
+    padding: 5px 15px;
+    background: #3c3c44;
+    text-align: center;
+    border-radius: 50px;
+}
+
+.future-forcast .today .temp {
+    font-size: 40px;
+    padding-top: 15px;
+
+}
 
 
 .future-forcast .weather-forcast{
@@ -97,6 +116,21 @@ body {
 
 }
 
+.weather-forcast .weather-forcast-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.weather-forcast .weather-forcast-item .day {
+    padding: 5px 15px;
+    background: #3C3C44;
+    border-radius: 50px;
+    text-align: center;
+
+}
 
 
 
