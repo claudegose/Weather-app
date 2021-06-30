@@ -34,12 +34,16 @@ getWeatherData();
 function getWeatherData () {
     navigator.geolocation.getCurrentPosition((success) => {
          let {latitude, longitude} = success.coords;
-fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&${longitude}={lon}&exclude=hourly,minutely&appid=${API_KEY}`)
-    .then(res => res.json)
+fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&appid=${API_KEY}`)
+    .then(res =>res.json())
     .then(data => console.log(data));
+showWeatherData(data);
 
 
     })
+
+}
+function showWeatherData (data){
 
 }
 
