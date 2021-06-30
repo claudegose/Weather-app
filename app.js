@@ -1,5 +1,9 @@
+const timeEl = document.getElementById("time");
+const dateEl = document.getElementById("date");
+const currentWeatherItemsEl = document.getElementById("current-weather-items");
+const timezone = document.getElementById("time-zone");
+const countryEl = document.getElementById("country");
+const weatherForecastEl = document.getElementById("weather-forcast");
+const currentTempEl = document.getElementById("current-temp");
 
 
-fetch("http://dataservice.accuweather.com/forecasts/v1/daily/5day/{newyork}")
-.then(res => res.json())
-.then(data => console.log(data));
