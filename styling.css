@@ -101,6 +101,7 @@ body {
     background: #3c3c44;
     text-align: center;
     border-radius: 50px;
+
 }
 
 .future-forcast .today .temp {
@@ -108,7 +109,6 @@ body {
     padding-top: 15px;
 
 }
-
 
 .future-forcast .weather-forcast{
     display: flex;
