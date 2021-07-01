@@ -108,8 +108,8 @@ function showWeatherData (data) {
                 `<div class="weather-forcast-item">
             <div class="day">${window.moment(day.dt * 1000).format('ddd')}</div>
             <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-            <div class="temp">Night - ${data.list[1].main.temp_min}&#176; C </div> 
-            <div class="temp">Day - ${data.list[1].main.temp_min}&#176; C </div>
+            <div class="temp">Night - ${temp_min}&#176; C </div> 
+            <div class="temp">Day - ${temp_max}&#176; C </div>
 
         </div>`
 
