@@ -6,7 +6,7 @@ const countryEl = document.getElementById("country");
 const weatherForecastEl = document.getElementById("weather-forcast");
 const currentTempEl = document.getElementById("current-temp");
 var button = document.querySelector(".button");
-var inputValue = document.querySelector(".inputValue");
+var cityInput = document.querySelector(".inputValue");
 var name = document.querySelector(".name");
 var description = document.querySelector(".description");
 var temperature = document.querySelector(".temp");   // Changed from temp
@@ -17,7 +17,6 @@ const days= ["sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" , 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 
-const API_KEY = "3a6bc0c0cb362d0812c688e02eb124f8";
 
 
 setInterval(() =>{
@@ -42,13 +41,15 @@ setInterval(() =>{
     document.querySelector(".button").addEventListener("click", function getWeatherData () {
     navigator.geolocation.getCurrentPosition((success) => {
          let {latitude, longitude} = success.coords;
-fetch("https://api.openweathermap.org/data/2.5/weather?q="+inputValue.value+"&exclude=hourly,minutely&units=metric&appid=3a6bc0c0cb362d0812c688e02eb124f8")
+fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=metric&cnt=5&appid=83aecb3a10b7add7d0c3335d3d4db649`)
     .then(res =>res.json())
     .then(data => {
 
         console.log(data)
         showWeatherData(data);
+
     })
+
 
 
     })
@@ -56,15 +57,16 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q="+inputValue.value+"&ex
 })
 
 
-function showWeatherData (data){
- let {humidity, pressure, temp} = data.main;
- let {speed} = data.main;
- let {sunrise, sunset} = data.sys
-timezone.innerHTML = data.timezone;
-countryEl.innerHTML = data.lat + 'N ' + data.lon+ 'E'
+function showWeatherData (data) {
+    let {humidity, pressure, temp} = data.list[0].main;
+    let {sunrise, sunset} = data.city;
 
-currentWeatherItemsEl.innerHTML =
-    `<div class="weather-item">
+
+    timezone.innerHTML = data.city.name
+    countryEl.innerHTML = data.city.coord.lat+ 'N ' + data.city.coord.lon + 'E'
+
+    currentWeatherItemsEl.innerHTML =
+        `<div class="weather-item">
                     
                    <div>Humidity</div>
                     <div>${humidity}%</div>
@@ -88,55 +90,32 @@ currentWeatherItemsEl.innerHTML =
                 </div>`;
 
 
+    let {temp_max, temp_min} = data.list[0].main
 
 
-let otherDayForcast = ''
-data.daily.forEach((day,idx) => {
-    if(idx === 0) {
-        currentTempEl.innerHTML =
-            `<img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon">
+    let otherDayForcast = ''
+    data.list.forEach((day, idx) => {
+        if (idx === 0) {
+            currentTempEl.innerHTML =
+                `<img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon">
                 <div class="other">
                     <div class="day">Today</div>
-                    <div class="temp">Night - ${day.temp.night}&#176; C</div>
-                    <div class="temp">Day - ${day.temp.day}&#176; C</div>
+                    <div class="temp">Night - ${temp_min}&#176; C</div>
+                    <div class="temp">Day - ${temp_max}&#176; C</div>
                 </div>`
-    } else{
-        otherDayForcast +=
-            `<div class="weather-forcast-item">
+        } else {
+            otherDayForcast +=
+                `<div class="weather-forcast-item">
             <div class="day">${window.moment(day.dt * 1000).format('ddd')}</div>
             <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-            <div class="temp">Night - ${day.temp.night}&#176; C </div> 
-            <div class="temp">Day - ${day.temp.day}&#176; C </div>
+            <div class="temp">Night - ${data.list[1].main.temp_min}&#176; C </div> 
+            <div class="temp">Day - ${data.list[1].main.temp_min}&#176; C </div>
 
         </div>`
 
-    }
-})
+        }
+    })
 
     weatherForecastEl.innerHTML = otherDayForcast
-
-
 }
 
-/*
-
-    document.querySelector(".button").addEventListener("click", () => {
-        fetch("https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + " &exclude=hourly,minutely&units=metric&appid=3a6bc0c0cb362d0812c688e02eb124f8")
-            .then(res => res.json())
-            .then(data => {
-                var nameValue = data['name'];
-                var tempValue = data['main']['temp'];
-                var descValue = data['weather'][0]['description'];
-
-                name.innerHTML = nameValue;
-                temp.innerHTML = `${tempValue} C`;
-                description.innerHTML = descValue;
-
-
-            })
-
-            .catch(err => alert("City Not Found"))
-
-
-    })
-*/
