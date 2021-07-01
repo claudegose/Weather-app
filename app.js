@@ -5,6 +5,12 @@ const timezone = document.getElementById("time-zone");
 const countryEl = document.getElementById("country");
 const weatherForecastEl = document.getElementById("weather-forcast");
 const currentTempEl = document.getElementById("current-temp");
+var button = document.querySelector(".button");
+var inputValue = document.querySelector(".inputValue");
+var name = document.querySelector(".name");
+var description = document.querySelector(".description");
+var temperature = document.querySelector(".temp");   // Changed from temp
+
 
 
 const days= ["sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" , "Saturday", "Sunday"]
@@ -30,11 +36,12 @@ setInterval(() =>{
 }, 1000);
 
 
-getWeatherData();
-function getWeatherData () {
+
+
+    document.querySelector(".button").addEventListener("click", function getWeatherData () {
     navigator.geolocation.getCurrentPosition((success) => {
          let {latitude, longitude} = success.coords;
-fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`)
+fetch("https://api.openweathermap.org/data/2.5/weather?q="+inputValue.value+"&exclude=hourly,minutely&units=metric&appid=3a6bc0c0cb362d0812c688e02eb124f8")
     .then(res =>res.json())
     .then(data => {
 
@@ -45,15 +52,20 @@ fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${lon
 
     })
 
-}
+})
+
+
 function showWeatherData (data){
- let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
+ let {humidity, pressure, temp} = data.main;
+ let {speed} = data.main;
+ let {sunrise, sunset} = data.sys
 timezone.innerHTML = data.timezone;
 countryEl.innerHTML = data.lat + 'N ' + data.lon+ 'E'
 
 currentWeatherItemsEl.innerHTML =
     `<div class="weather-item">
-                    <div>Humidity</div>
+                    
+                   <div>Humidity</div>
                     <div>${humidity}%</div>
                 </div>
                 <div class="weather-item">
@@ -61,8 +73,8 @@ currentWeatherItemsEl.innerHTML =
                     <div>${pressure}</div>
                 </div> 
                 <div class="weather-item">
-                    <div>Wind Speed</div>
-                    <div>${wind_speed}</div>  
+                    <div>Temperature</div>
+                    <div>${temp}&#8451</div>  
                 </div>
 
                 <div class="weather-item">
@@ -73,6 +85,7 @@ currentWeatherItemsEl.innerHTML =
                     <div>Sunset</div>
                     <div>${window.moment(sunset * 1000).format('HH:mm a')}</div>
                 </div>`;
+
 
 
 
@@ -102,8 +115,27 @@ data.daily.forEach((day,idx) => {
     weatherForecastEl.innerHTML = otherDayForcast
 
 
-
-
-
 }
 
+/*
+
+    document.querySelector(".button").addEventListener("click", () => {
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + " &exclude=hourly,minutely&units=metric&appid=3a6bc0c0cb362d0812c688e02eb124f8")
+            .then(res => res.json())
+            .then(data => {
+                var nameValue = data['name'];
+                var tempValue = data['main']['temp'];
+                var descValue = data['weather'][0]['description'];
+
+                name.innerHTML = nameValue;
+                temp.innerHTML = `${tempValue} C`;
+                description.innerHTML = descValue;
+
+
+            })
+
+            .catch(err => alert("City Not Found"))
+
+
+    })
+*/

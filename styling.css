@@ -1,11 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
-
 * {
     box-sizing: border-box;
     margin:0;
     padding: 0;
 }
+
+
+.input {
+    text-align: center;
+}
+
+
+input[type="text"]{
+
+    background: #e7e7e7;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 50px;
+}
+
+input[type="submit"] {
+
+    width: 100px;
+    text-align: center;
+    background: #e7e7e7;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+.display {
+    text-align: center;
+}
+
+
+
+
+
 
 p {
     color: white;
@@ -66,12 +101,15 @@ body {
 .current-info .others{
     display: flex;
     flex-direction: column;
+    position: relative;
     background: rgba(24,23,27, 0.6);
     padding: 20px;
     border-radius: 10px;
     margin: 10px 0;
     border: 1px solid #eee;
 }
+
+
 
 .current-info .others .weather-item {
     display: flex;
