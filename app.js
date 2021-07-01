@@ -41,7 +41,7 @@ setInterval(() =>{
     document.querySelector(".button").addEventListener("click", function getWeatherData () {
     navigator.geolocation.getCurrentPosition((success) => {
          let {latitude, longitude} = success.coords;
-fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=metric&cnt=5&appid=83aecb3a10b7add7d0c3335d3d4db649`)
+fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=metric&cnt=7&appid=83aecb3a10b7add7d0c3335d3d4db649`)
     .then(res =>res.json())
     .then(data => {
 
