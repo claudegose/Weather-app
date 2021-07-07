@@ -5,11 +5,11 @@ const timezone = document.getElementById("time-zone");
 const countryEl = document.getElementById("country");
 const weatherForecastEl = document.getElementById("weather-forcast");
 const currentTempEl = document.getElementById("current-temp");
-var button = document.querySelector(".button");
-var cityInput = document.querySelector(".inputValue");
-var name = document.querySelector(".name");
-var description = document.querySelector(".description");
-var temperature = document.querySelector(".temp");   // Changed from temp
+let button = document.querySelector(".button");
+let cityInput = document.querySelector(".inputValue");
+let name = document.querySelector(".name");
+let description = document.querySelector(".description");
+let temperature = document.querySelector(".temp");   // Changed from temp
 
 
 
@@ -39,9 +39,8 @@ setInterval(() =>{
 
 
     document.querySelector(".button").addEventListener("click", function getWeatherData () {
-    navigator.geolocation.getCurrentPosition((success) => {
-         let {latitude, longitude} = success.coords;
-fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=metric&cnt=5&appid=83aecb3a10b7add7d0c3335d3d4db649`)
+
+fetch(`https://api.openweathermap.org/data/2.5/forecast/?q=${cityInput.value}&units=metric&cnt=20&exclude=hourly&appid=83aecb3a10b7add7d0c3335d3d4db649`)
     .then(res =>res.json())
     .then(data => {
 
@@ -52,7 +51,7 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&uni
 
 
 
-    })
+
 
 })
 
@@ -90,8 +89,8 @@ function showWeatherData (data) {
                 </div>`;
 
 
-    let {temp_max, temp_min} = data.list[0].main
 
+    let {temp_max, temp_min} = data.list[0].main
 
     let otherDayForcast = ''
     data.list.forEach((day, idx) => {
@@ -108,8 +107,8 @@ function showWeatherData (data) {
                 `<div class="weather-forcast-item">
             <div class="day">${window.moment(day.dt * 1000).format('ddd')}</div>
             <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-            <div class="temp">Night - ${data.list[1].main.temp_min}&#176; C </div> 
-            <div class="temp">Day - ${data.list[1].main.temp_min}&#176; C </div>
+            <div class="temp">Night - ${temp_min}&#176; C </div> 
+            <div class="temp">Day - ${temp_max}&#176; C </div>
 
         </div>`
 
