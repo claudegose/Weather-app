@@ -79,7 +79,6 @@ function showWeatherData (data) {
                     <div>Temperature</div>
                     <div>${temp}&#8451</div>  
                 </div>
-
                 <div class="weather-item">
                     <div>Sunrise</div>
                     <div>${window.moment(sunrise * 1000).format('HH:mm a')}</div>
@@ -104,18 +103,17 @@ function showWeatherData (data) {
                     <div class="temp">Day - ${temp_max}&#176; C</div>
                 </div>`
         } else {
-            otherDayForcast +=
+            otherDayForcast
                 `<div class="weather-forcast-item">
             <div class="day">${window.moment(day.dt * 1000).format('ddd')}</div>
             <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
             <div class="temp">Night - ${data.list[1].main.temp_min}&#176; C </div> 
             <div class="temp">Day - ${data.list[1].main.temp_min}&#176; C </div>
-
         </div>`
+
 
         }
     })
 
     weatherForecastEl.innerHTML = otherDayForcast
 }
-
