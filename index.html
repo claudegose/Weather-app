@@ -1,116 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="styling.css">
-    <title>Happy Weather App</title>
-</head>
+    <title>Weather App</title>
+    <link rel="stylesheet" href="weather.css"></head>
+    <link rel="stylesheet" href="mdb.min.css">
+    <script defer src="weather.js"></script>
 <body>
 
-<div class="container">
-    <div class="current-info">
-        <div class="date-container">
-            <div class="time" id="time">
-                <span id="am-pm"></span>
+<header>
+    <H1>Happy Days Weather</H1>
+</header>
 
-            </div>
-            <div class="date" id="date">
-                MONDAY
-            </div>
-
-
-<!-- Search Bar -->
-            <div class="others" id="current-weather-items1">
-                    <div class="input">
-                        <input type="text" class="inputValue" placeholder="Enter a city">
-                        <input type="submit" value="Submit" class="button">
-                    </div>
-
-
-
-                    <div class="display">
-                        <h1 class="name"></h1>
-                        <p class="description"></p>
-                        <p class="temp"></p>
-                    </div>
-
-            </div>
-
-
-<!-- End of Search Bar -->
-            <div class="others" id="current-weather-items">
-
-
-
-
-            </div>
-
-
-        </div>
-        <div class="place-container">
-            <div class="time-zone" id="time-zone"></div>
-            <div id="country" class="country"></div>
-        </div>
-    </div>
-
-
-</div>
-<div class="future-forcast">
-    <div class="today" id="current-temp">
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-
-    <div class="weather-forcast" id="weather-forcast">
-        <div class="weather-forcast-item">
-            <div class="day">Tuesday</div>
-            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-            <div class="temp">Night - 25.6&#176; C </div>
-            <div class="temp">Day - 35.6&#176; C </div>
-
-        </div>
-        <div class="weather-forcast-item">
-            <div class="day">Wednesday</div>
-            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-            <div class="temp">Night - 25.6&#176; C </div>
-            <div class="temp">Day - 35.6&#176; C </div>
-
-        </div>
-        <div class="weather-forcast-item">
-            <div class="day">Thursday</div>
-            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-            <div class="temp">Night - 25.6&#176; C </div>
-            <div class="temp">Day - 35.6&#176; C </div>
-
-        </div>
-        <div class="weather-forcast-item">
-            <div class="day">Friday</div>
-            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
-            <div class="temp">Night - 25.6&#176; C </div>
-            <div class="temp">Day - 35.6&#176; C </div>
-
-        </div>
-
-    </div>
-
+<div class="color" id="instructions">
 </div>
 
+<h1 class="color noDisplay mt-5" id="cityName">City</h1>
 
+<div class ='container mt-5 noDisplay' id="weatherCards">
 
+    <div class="row justify-content-center">
+        <div class="col-2">
+            <div class="card">
+                <h1 class="">Today</h1>
+                <p class="m-0">Current temperature:</p>
+                <p class="font-weight-bold p-3 pSize" id="currentTemp">25</p>
+                <p id="currentDesc">description</p>
+                <img id="icon1" class="icon mx-auto">
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card">
+                <h1 class="">Tomorrow</h1>
+                <p class="m-0">Average temperature:</p>
+                <p class="font-weight-bold p-3 pSize" id="avgTemp1">25</p>
+                <p id="desc2">description</p>
+                <img id="icon2" class="icon mx-auto">
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card">
+                <h1 class="" id="name3">Today</h1>
+                <p class="m-0">Average temperature:</p>
+                <p class="font-weight-bold p-3 pSize" id="avgTemp2">25</p>
+                <p id="desc3">description</p>
+                <img id="icon3" class="icon mx-auto">
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card">
+                <h1 class="" id="name4">Today</h1>
+                <p class="m-0">Average temperature:</p>
+                <p class="font-weight-bold p-3 pSize" id="avgTemp3">25</p>
+                <p id="desc4">description</p>
+                <img id="icon4" class="icon mx-auto">
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card">
+                <h1 class="" id="name5">Today</h1>
+                <p class="m-0">Average temperature:</p>
+                <p class="font-weight-bold p-3 pSize" id="avgTemp4">25</p>
+                <p id="desc5">description</p>
+                <img id="icon5" class="icon mx-auto">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5 centerInput" >
+    <input type="text" id="form1" class="form-control" placeholder="Please enter a city."/>
+    <button class="btn-primary" id ="run">Search</button>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="app.js"></script>
 </body>
 </html>
