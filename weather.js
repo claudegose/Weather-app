@@ -4,7 +4,7 @@ weather = () => {
 
         let cityInput = document.getElementById('form1').value
 
-        fetch (`http://api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=a33b814fb5f71647a19972bf2ab409d1`)
+        fetch (`http://api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=3a6bc0c0cb362d0812c688e02eb124f8`)
             .then(response => {return response.json()})
             .then(data => {
 
